@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Meet the people behind WebTechFarmers — strategy, design, and digital systems built with purpose.">
+<title>Team — WebTechFarmers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0b1420;--deep-2:#101d29;--paper:#f7f9f7;--ink:#10251a;--muted:#94a79d;--green:#22c55e;--green-bright:#9cf8ad;--line:#ffffff1c;--font-head:'Plus Jakarta Sans',Inter,Arial,sans-serif;--font-body:'DM Sans',Inter,Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{width:min(100% - 96px,1600px);margin-inline:auto}
+.team-header{position:absolute;inset:0 0 auto;z-index:5;color:#fff}
+.team-header__inner{height:99px;display:flex;align-items:center;justify-content:space-between;gap:28px}
+.brand{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:800 23px/1 var(--font-head);letter-spacing:-.075em}.brand img{width:86px;height:36px;object-fit:contain;flex-shrink:0}.brand__type{font:800 23px/1 var(--font-head);letter-spacing:-.075em}.brand__type span{color:var(--green)}
+.brand-mark{display:grid;grid-template-columns:repeat(3,6px);align-items:end;gap:3px;width:25px;height:29px}
+.brand-mark i{display:block;background:#fff;border-radius:4px 4px 1px 1px}.brand-mark i:nth-child(1){height:16px}.brand-mark i:nth-child(2){height:25px;background:var(--green)}.brand-mark i:nth-child(3){height:20px}
+.brand span span{color:var(--green)}
+.back-link{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#d9f5df;transition:color .2s ease}.back-link:hover{color:var(--green-bright)}
+.team-hero{position:relative;min-height:650px;padding:190px 0 110px;overflow:hidden;background:var(--deep);color:#fff}
+.team-hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#ffffff0a 1px,transparent 1px),linear-gradient(90deg,#ffffff0a 1px,transparent 1px);background-size:80px 80px;opacity:.55}
+.team-hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 30%,#2d81504d,transparent 31%),linear-gradient(180deg,transparent 50%,#0b1420 100%);pointer-events:none}
+.team-hero .container,.team-hero__line{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:11px;color:var(--green-bright);font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}.eyebrow:before{content:"";width:29px;height:1px;background:var(--green)}
+.team-hero h1{max-width:950px;margin:25px 0 24px;font:800 clamp(56px,9vw,150px)/.9 var(--font-head);letter-spacing:-.085em}.team-hero h1 em{font-style:normal;color:#a7dcb4}
+.team-hero p{max-width:590px;margin:0;color:#b7c9be;font-size:16px;line-height:1.7;letter-spacing:-.01em;text-wrap:balance}
+.team-hero__line{position:absolute;left:0;right:0;bottom:33px;display:flex;justify-content:space-between;color:#7f988a;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}.team-hero__line b{color:var(--green);font-weight:800}
+.team-main{padding:110px 0 125px;background:var(--paper)}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:55px}.section-head h2{margin:0;font:800 clamp(40px,6vw,82px)/.95 var(--font-head);letter-spacing:-.075em}.section-head p{max-width:330px;margin:0;color:#71857a;font-size:14px;line-height:1.7}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.team-card{position:relative;min-height:390px;padding:22px;display:flex;flex-direction:column;justify-content:end;overflow:hidden;background:var(--deep-2);color:#fff;border:1px solid #173025;isolation:isolate}.team-card:before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 70% 20%,#2c895343,transparent 34%),linear-gradient(145deg,#162c37,#0c1720 70%)}.team-card:after{content:"";position:absolute;inset:18px;z-index:-1;border:1px solid #ffffff1a;background:linear-gradient(135deg,transparent 48%,#86f39c14 49%,transparent 50%);pointer-events:none}
+.team-card:nth-child(2):before{background:radial-gradient(circle at 30% 25%,#7b8f4c52,transparent 35%),linear-gradient(145deg,#26342e,#101d22 72%)}.team-card:nth-child(3):before{background:radial-gradient(circle at 70% 25%,#356d8e5e,transparent 35%),linear-gradient(145deg,#172b3c,#0c1720 72%)}.team-card:nth-child(4):before{background:radial-gradient(circle at 30% 25%,#9b6e3c55,transparent 35%),linear-gradient(145deg,#302b27,#11191c 72%)}
+.team-card__portrait{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:-2;opacity:.68;filter:saturate(.72) contrast(1.05);transition:opacity .45s ease,filter .45s ease}.team-card--john:after{background:linear-gradient(180deg,#0710170a 25%,#071017cc 78%,#071017 100%);transition:background .45s ease}.team-card--john h3,.team-card--john p,.team-card--john small,.team-card--john .team-card__number{transition:opacity .3s ease,transform .4s ease}.team-card--john:hover .team-card__portrait{opacity:1;filter:none}.team-card--john:hover:after{background:linear-gradient(180deg,#07101700 20%,#07101799 78%,#071017e8 100%)}.team-card--john:hover p,.team-card--john:hover .team-card__number{opacity:0}.team-card--john:hover h3{transform:translateY(52px)}.team-card--john:hover small{opacity:1}
+.team-card--john p{max-height:100px;overflow:hidden;transition:max-height .35s ease,opacity .3s ease}.team-card--john:hover p{max-height:0;margin:0}.team-card--john:hover h3{transform:translateY(0)}
+.team-card--jomar:after{background:linear-gradient(180deg,#0710170a 25%,#071017cc 78%,#071017 100%);transition:background .45s ease}.team-card--jomar h3,.team-card--jomar p,.team-card--jomar small,.team-card--jomar .team-card__number{transition:opacity .3s ease}.team-card--jomar p{max-height:100px;overflow:hidden;transition:max-height .35s ease,opacity .3s ease}.team-card--jomar:hover .team-card__portrait{opacity:1;filter:none}.team-card--jomar:hover:after{background:linear-gradient(180deg,#07101700 20%,#07101799 78%,#071017e8 100%)}.team-card--jomar:hover p{max-height:0;margin:0;opacity:0}.team-card--jomar:hover .team-card__number{opacity:0}
+.team-card__number{position:absolute;top:24px;left:22px;color:var(--green-bright);font-size:10px;font-weight:800;letter-spacing:.16em}.team-card__monogram{position:absolute;top:50%;left:50%;transform:translate(-50%,-58%);color:#ffffff22;font:800 110px/1 var(--font-head);letter-spacing:-.12em}.team-card h3{margin:0 0 8px;font:800 24px/1.05 var(--font-head);letter-spacing:-.05em}.team-card p{margin:0;color:#a6b9ad;font-size:12px;line-height:1.55}.team-card small{display:block;margin-top:20px;color:var(--green-bright);font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.team-note{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:88px;padding-top:32px;border-top:1px solid #d9e1da}.team-note h3{margin:0;font:800 clamp(29px,4vw,52px)/1 var(--font-head);letter-spacing:-.07em}.team-note p{max-width:470px;margin:0;color:#71857a;font-size:16px;line-height:1.8}
+.team-cta{padding:85px 0;background:var(--deep);color:#fff}.team-cta__inner{display:flex;align-items:center;justify-content:space-between;gap:30px}.team-cta h2{max-width:650px;margin:0;font:800 clamp(36px,5vw,70px)/.98 var(--font-head);letter-spacing:-.075em}.quote-button{display:inline-flex;align-items:center;gap:18px;flex:none;padding:15px 20px;border:1px solid var(--green);border-radius:8px;background:#f4fff6;color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.05em;transition:background .2s ease,transform .2s ease}.quote-button span{color:#168b46;font-size:18px;line-height:0}.quote-button:hover{background:var(--green);transform:translateY(-2px)}
+.team-footer{padding:26px 0;background:#09141b;color:#71877a;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.team-footer__inner{display:flex;justify-content:space-between;gap:20px}.team-footer a:hover{color:var(--green-bright)}
+@media(max-width:1000px){.container{width:min(100% - 64px,1600px)}.team-header__inner{height:80px}.team-grid{grid-template-columns:repeat(2,1fr)}.team-card{min-height:360px}}
+@media(max-width:700px){.container{width:min(100% - 38px,1600px)}.team-header__inner{height:76px}.brand__type{font-size:20px}.back-link{font-size:9px}.team-hero{min-height:690px;padding-top:150px}.team-hero h1{font-size:clamp(55px,16vw,88px)}.team-hero p{font-size:15px}.team-hero__line{bottom:24px;font-size:8px}.team-main{padding:78px 0 90px}.section-head{display:block;margin-bottom:34px}.section-head p{margin-top:20px}.team-grid{grid-template-columns:1fr;gap:12px}.team-card{min-height:330px}.team-note{grid-template-columns:1fr;gap:25px;margin-top:65px}.team-cta{padding:70px 0}.team-cta__inner{display:block}.quote-button{margin-top:30px}.team-footer__inner{display:block;line-height:2}}
+@media(max-width:480px){.brand img{width:66px;height:28px}.brand__type{font-size:19px}}
+</style>
+<style>.team-card--john-paul:after{background:linear-gradient(180deg,#0710170a 25%,#071017cc 78%,#071017 100%);transition:background .45s ease}.team-card--john-paul p{max-height:100px;overflow:hidden;transition:max-height .35s ease,opacity .3s ease}.team-card--john-paul:hover .team-card__portrait{opacity:1;filter:none}.team-card--john-paul:hover:after{background:linear-gradient(180deg,#07101700 20%,#07101799 78%,#071017e8 100%)}.team-card--john-paul:hover p{max-height:0;margin:0;opacity:0}.team-card--john-paul:hover .team-card__number{opacity:0}</style>
+<style>
+/* Keep every profile card's name, bio, and role on the same rhythm. */
+.team-card h3{min-height:50px}
+.team-card p{min-height:42px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.team-card--john:hover p,.team-card--jomar:hover p,.team-card--john-paul:hover p{min-height:0}
+.team-card--john .team-card__portrait{object-position:center top;transform:none}
+.team-card--jomar .team-card__portrait{object-position:center 16%}
+.team-card--john-paul .team-card__portrait{object-position:center 15%}
+</style>
+<style>
+/* Keep the hero metadata below the intro copy instead of overlaying it. */
+.team-hero__line{position:relative;left:auto;right:auto;bottom:auto;margin-top:72px}
+@media(max-width:700px){.team-hero__line{margin-top:52px}}
+</style>
+</head>
+<body>
+<header class="team-header">
+<div class="container team-header__inner">
+<a aria-label="WebTechFarmers — homepage" class="brand" href="index.html"><img alt="WebTechFarmers WTF logo" height="30" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDIxIDI2MiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJXZWJUZWNoRmFybWVycyBXVEYgbGV0dGVybWFyayI+CiAgPHBhdGggZmlsbD0iI0Y4RkFGQyIgZD0iTTAgMiBMNzMgMjYxIEwxNTYgMjYxIEwyNTMgMTE1IEwzMDAgMjYxIEwzODIgMjYxIEw0OTkgODcgTDQwOCA4NiBMMzU1IDE2MSBMMzA5IDIgTDI1MyAxIEwyNDEgNSBMMjMyIDEyIEwxMzMgMTYxIEw4OCAyIFoiLz4KICA8cGF0aCBmaWxsPSIjRjhGQUZDIiBkPSJNNDU0IDI2MSBMNTQ2IDI2MSBMNjYxIDYxIEw5NzIgNjEgTDEwMjAgMCBMNDYyIDEgTDQyNCA2MSBMNTY3IDYxIEw1NjggNjQgWiIvPgogIDxwYXRoIGZpbGw9IiMxNkU2NDAiIGQ9Ik01ODcgMjYxIEw2NzkgMjYxIEw3NDAgMTUxIEw5MDYgMTUxIEw5NTMgODcgTDY4NiA4NiBaIi8+Cjwvc3ZnPgo=" width="102"><span class="brand__type">WebTech<span>Farmers</span></span></a>
+<a class="back-link" href="index.html">Back to home <span aria-hidden="true">↗</span></a>
+</div>
+</header>
+<main>
+<section class="team-hero">
+<div class="container">
+<div class="eyebrow">The people behind the work</div>
+<h1>A small team with <em>big intent.</em></h1>
+<p>We bring strategy, design, and technology together to make digital work feel clear, useful, and ready for what comes next.</p>
+</div>
+<div class="container team-hero__line"><span>WEBTECHFARMERS / TEAM</span><span><b>04</b> — DISCIPLINES</span></div>
+</section>
+<section class="team-main">
+<div class="container">
+<div class="section-head"><h2>Different minds.<br>One direction.</h2><p>Our team works across the full digital landscape, with every discipline connected to the same purpose: building work that moves businesses forward.</p></div>
+<div class="team-grid">
+<article class="team-card"><span class="team-card__number">01 / DIRECTION</span><span class="team-card__monogram">SD</span><h3>Strategy<br>&amp; Direction</h3><p>Finding the clearest path from a business goal to a digital experience people understand.</p><small>Clarity before complexity</small></article>
+<article class="team-card team-card--john"><img class="team-card__portrait" src="assets/team-john-simon.png" alt="John Simon Santos"><span class="team-card__number">02 / DESIGN &amp; BUILD</span><h3>John Simon<br>Santos</h3><p>Web developer and graphics designer building clear digital experiences.</p><small>Web Developer / Graphics Designer</small></article>
+<article class="team-card team-card--jomar"><img class="team-card__portrait" src="assets/team-jomar-manalo.png" alt="Jomar Manalo"><span class="team-card__number">03 / BUILD &amp; SUPPORT</span><h3>Jomar<br>Manalo</h3><p>Web developer and technical support specialist keeping products reliable.</p><small>Web Developer / Technical Support</small></article>
+<article class="team-card team-card--john-paul"><img class="team-card__portrait" src="assets/team-john-paul-quiambao.png" alt="John Paul Quiambao"><span class="team-card__number">04 / SERVER &amp; SUPPORT</span><h3>John Paul<br>Quiambao</h3><p>Server management and technical support for stable digital systems.</p><small>Server Management / Technical Support</small></article>
+</div>
+<div class="team-note"><h3>Good work is a<br>team sport.</h3><p>We keep the room small, the thinking sharp, and the conversation open. That lets us move quickly without losing the care that makes the final work feel right.</p></div>
+</div>
+</section>
+<section class="team-cta"><div class="container team-cta__inner"><h2>Have a meaningful problem to solve?</h2><a class="quote-button" href="index.html#contact">Get a Quote <span aria-hidden="true">↗</span></a></div></section>
+</main>
+<footer class="team-footer"><div class="container team-footer__inner"><span>BUILT WITH PURPOSE. DESIGNED WITH CARE.</span><a href="index.html">Back to WebTechFarmers ↑</a></div></footer>
+</body>
+</html>
