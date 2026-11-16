@@ -43,6 +43,16 @@
 .brand--footer img{width:76px;height:auto}
 @media(max-width:480px){.brand img{width:66px;height:28px}.brand__type{font-size:19px}}
 </style>
+<style>
+/* Full-viewport hero and a sharper, product-style contact action. */
+.hero{height:100vh;height:100svh;min-height:640px}
+.nav__cta{position:relative;padding:11px 15px 11px 18px;border:1px solid rgba(109,235,145,.7);border-radius:8px;background:linear-gradient(135deg,rgba(34,197,94,.16),rgba(255,255,255,.04));box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),0 8px 24px rgba(0,0,0,.14);font-size:12px;letter-spacing:.04em;gap:17px}
+.nav__cta:before{content:'↗';display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--green);border-radius:5px;color:var(--green);font-size:14px;line-height:1;order:2;transition:transform .2s,background .2s,color .2s}
+.nav__cta span{display:none}
+.nav__cta:hover{background:var(--green);color:#091811;transform:translateY(-1px);box-shadow:0 10px 28px rgba(34,197,94,.2)}
+.nav__cta:hover:before{background:#091811;color:var(--green);transform:rotate(8deg)}
+@media(max-width:700px){.hero{height:100vh;height:100svh;max-height:none;min-height:600px}.nav__cta{border-radius:7px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -60,7 +70,7 @@
 <a href="#services">Services</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
-<a class="nav__cta" href="#contact">Get a Quote <span aria-hidden="true">↗</span></a>
+<a class="nav__cta" href="#contact">Contact us <span aria-hidden="true">↗</span></a>
 </nav>
 <button aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu" class="menu-toggle" type="button">
 <span></span><span></span><span></span>
