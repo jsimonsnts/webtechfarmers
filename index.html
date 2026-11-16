@@ -131,17 +131,19 @@
 </style>
 <style>
 /* Clean hero artwork: the scroll mark is no longer baked into the background. */
-.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-desktop.webp')}
+ .hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-off-desktop.png')}
 </style>
 <style>
 /* Scroll-story hero: the artwork stays still while the message changes with progress. */
 .hero{height:500vh;min-height:0;overflow:visible;position:relative;background:var(--deep)}
 .hero__stage{position:sticky;top:0;height:100vh;min-height:600px;overflow:hidden;background:var(--deep)}
-.hero__photo,.hero__grid{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .75s ease;will-change:opacity}
+ .hero__photo,.hero__grid,.hero__lights{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .75s ease;will-change:opacity}
 .hero__photo{z-index:0}
-.hero__grid{z-index:1;opacity:0;background-image:url('assets/hero-grid-desktop.png')}
-.hero[data-grid-state="active"] .hero__photo{opacity:0}
-.hero[data-grid-state="active"] .hero__grid{opacity:1}
+ .hero__lights{z-index:1;opacity:0;background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-desktop.webp')}
+ .hero__grid{z-index:2;opacity:0;background-image:url('assets/hero-grid-desktop.png')}
+ .hero[data-lights="on"] .hero__lights{opacity:1}
+ .hero[data-grid-state="active"] .hero__photo,.hero[data-grid-state="active"] .hero__lights{opacity:0}
+ .hero[data-grid-state="active"] .hero__grid{opacity:1}
 .hero__story{position:absolute;inset:0;z-index:3;pointer-events:none}
  .hero__story-card{position:absolute;left:max(8vw,48px);top:50%;max-width:min(590px,46vw);opacity:0;transform:translate3d(42px,-42%,0) scale(.96) rotate(1deg);-webkit-transform:translate3d(42px,-42%,0) scale(.96) rotate(1deg);filter:blur(8px);clip-path:inset(0 0 0 16%);transition:opacity .45s ease,transform .75s cubic-bezier(.2,.7,.2,1),filter .55s ease,clip-path .7s ease; -webkit-transition:opacity .45s ease,-webkit-transform .75s cubic-bezier(.2,.7,.2,1),filter .55s ease,clip-path .7s ease;will-change:opacity,transform,filter,clip-path;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .hero__story-kicker{display:block;margin-bottom:18px;color:var(--green-bright);font:700 10px var(--font-head);letter-spacing:.16em}
@@ -165,8 +167,8 @@
 @media (max-width:700px){.hero__grid{background-image:url('assets/hero-grid-mobile.png')}}
 </style>
 <style>
-@media (min-width:701px) and (max-width:1000px){.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-tablet.webp');background-position:center center}}
-@media (max-width:700px){.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-mobile.webp');background-position:center center}}
+@media (min-width:701px) and (max-width:1000px){.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-off-tablet.png');background-position:center center}.hero__lights{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-tablet.webp');background-position:center center}}
+@media (max-width:700px){.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-off-mobile.png');background-position:center center}.hero__lights{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-mobile.webp');background-position:center center}}
 </style>
 <style>
 /* Keep the scroll cue hidden until the visitor has moved 300px into the page. */
@@ -317,6 +319,7 @@
 <section aria-label="WebTechFarmers digital drafting board" class="hero" id="top">
 <div class="hero__stage">
 <div aria-hidden="true" class="hero__photo"></div>
+<div aria-hidden="true" class="hero__lights"></div>
 <div aria-hidden="true" class="hero__grid"></div>
 <svg aria-hidden="true" class="hero__trace" preserveaspectratio="xMidYMid slice" viewbox="0 0 1672 557">
 <defs><lineargradient id="trace-gradient" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#8af9ad" stop-opacity="0"></stop><stop offset=".5" stop-color="#9cf8ad" stop-opacity=".9"></stop><stop offset="1" stop-color="#8af9ad" stop-opacity="0"></stop></lineargradient></defs>
@@ -506,6 +509,7 @@ function updateHeroStory(){
  const distance=Math.max(1,hero.offsetHeight-window.innerHeight);
  const progress=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/distance));
  const hasScrolled=window.scrollY>2;
+ const nextLightsState=window.scrollY>150?'on':'off';
  const nextStep=String(progress<.22?0:progress<.44?1:2);
  const nextStoryState=progress>.62?'hidden':'visible';
   const previousStoryStep=Number(hero.dataset.storyStep??nextStep);
@@ -522,10 +526,11 @@ function updateHeroStory(){
   forwardTrack?.style.setProperty('transform',`translate3d(${forwardOffset}%,0,0)`);
   reverseTrack?.style.setProperty('transform',`translate3d(${reverseOffset}%,0,0)`);
  };
-  if(hero.dataset.hasScrolled===String(hasScrolled) && hero.dataset.storyStep===nextStep && hero.dataset.storyState===nextStoryState && hero.dataset.gridState===nextGridState && hero.dataset.sloganState===nextSloganState && hero.dataset.endpointState===nextEndpointState){updateSlogans();return;}
+  if(hero.dataset.hasScrolled===String(hasScrolled) && hero.dataset.lights===nextLightsState && hero.dataset.storyStep===nextStep && hero.dataset.storyState===nextStoryState && hero.dataset.gridState===nextGridState && hero.dataset.sloganState===nextSloganState && hero.dataset.endpointState===nextEndpointState){updateSlogans();return;}
  window.cancelAnimationFrame(heroStoryFrame);
  heroStoryFrame=window.requestAnimationFrame(()=>{
   hero.dataset.storyStep=nextStep;
+  hero.dataset.lights=nextLightsState;
    hero.dataset.storyDirection=storyDirection;
   hero.dataset.hasScrolled=String(hasScrolled);
   hero.dataset.storyState=nextStoryState;
