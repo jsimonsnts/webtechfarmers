@@ -172,9 +172,9 @@
 .hero__story-card:before{content:'';position:absolute;left:-18px;top:6px;width:3px;height:74px;background:var(--green);box-shadow:0 0 22px #6deb91aa}
 .hero__story-card:after{content:'01—03';position:absolute;right:-34vw;top:8px;color:#ffffff38;font:700 10px var(--font-head);letter-spacing:.18em}
 .hero__marquee{position:absolute;left:0;right:0;bottom:108px;z-index:3;overflow:hidden;opacity:.34;transform:rotate(-3deg);pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.hero__marquee-track{display:flex;width:max-content;align-items:center;gap:22px;color:#d8f5df;font:700 clamp(16px,2vw,25px) var(--font-head);letter-spacing:.08em;white-space:nowrap;animation:hero-marquee 24s linear infinite}
+.hero__marquee-track{display:flex;width:max-content;align-items:center;gap:22px;color:#d8f5df;font:700 clamp(16px,2vw,25px) var(--font-head);letter-spacing:.08em;white-space:nowrap;animation:hero-marquee 22s linear infinite;will-change:transform}
 .hero__marquee-track i{color:var(--green);font-style:normal;font-size:.8em}
-@keyframes hero-marquee{from{transform:translateX(-18%)}to{transform:translateX(-58%)}}
+@keyframes hero-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:700px){.hero__marquee{bottom:102px}.hero__marquee-track{gap:14px;font-size:14px}.hero__story-card:before{left:-12px}.hero__story-card:after{right:0;top:-24px}}
 </style>
 <style>
