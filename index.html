@@ -177,6 +177,10 @@
 @keyframes hero-marquee{from{transform:translateX(-18%)}to{transform:translateX(-58%)}}
 @media(max-width:700px){.hero__marquee{bottom:102px}.hero__marquee-track{gap:14px;font-size:14px}.hero__story-card:before{left:-12px}.hero__story-card:after{right:0;top:-24px}}
 </style>
+<style>
+.hero__bottom{transition:opacity .35s ease,visibility .35s ease,transform .35s ease}
+.hero__bottom.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,12px)}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -361,6 +365,9 @@ if(launcherIcon&&brandLogo){launcherIcon.style.backgroundImage=`url("${brandLogo
 const heroScroll=document.querySelector('.hero__scroll');
 function updateHeroScroll(){heroScroll?.classList.toggle('is-fixed',window.scrollY>=300)}
 window.addEventListener('scroll',updateHeroScroll,{passive:true});updateHeroScroll();
+const heroBottom=document.querySelector('.hero__bottom');
+function updateHeroBottom(){heroBottom?.classList.toggle('is-hidden',window.scrollY>=200)}
+window.addEventListener('scroll',updateHeroBottom,{passive:true});updateHeroBottom();
 const hero=document.querySelector('.hero');
 function updateHeroStory(){if(!hero)return;const distance=Math.max(1,hero.offsetHeight-window.innerHeight),progress=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/distance));hero.dataset.storyStep=String(progress<.34?0:progress<.68?1:2)}
 window.addEventListener('scroll',updateHeroStory,{passive:true});window.addEventListener('resize',updateHeroStory);updateHeroStory();
