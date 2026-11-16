@@ -138,6 +138,11 @@
 /* Scroll-story hero: the artwork stays still while the message changes with progress. */
 .hero{height:280vh;min-height:0;overflow:visible;position:relative;background:var(--deep)}
 .hero__stage{position:sticky;top:0;height:100vh;min-height:600px;overflow:hidden;background:var(--deep)}
+.hero__photo,.hero__grid{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity .75s ease;will-change:opacity}
+.hero__photo{z-index:0}
+.hero__grid{z-index:1;opacity:0;background-image:url('assets/hero-grid-desktop.png')}
+.hero[data-grid-state="active"] .hero__photo{opacity:0}
+.hero[data-grid-state="active"] .hero__grid{opacity:1}
 .hero__story{position:absolute;inset:0;z-index:3;pointer-events:none}
 .hero__story-card{position:absolute;left:max(8vw,48px);top:50%;max-width:min(590px,46vw);opacity:0;transform:translate3d(-18px,-42%,0);-webkit-transform:translate3d(-18px,-42%,0);transition:opacity .55s ease,transform .7s cubic-bezier(.2,.7,.2,1);-webkit-transition:opacity .55s ease,-webkit-transform .7s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform;-webkit-backface-visibility:hidden;backface-visibility:hidden}
 .hero__story-kicker{display:block;margin-bottom:18px;color:var(--green-bright);font:700 10px var(--font-head);letter-spacing:.16em}
@@ -154,6 +159,8 @@
 @keyframes story-scroll-dot{0%{transform:translateY(0);opacity:1}70%{transform:translateY(24px);opacity:0}100%{transform:translateY(0);opacity:0}}
 @media(max-width:1000px){.hero{height:250vh}.hero__story-card{left:7vw;max-width:62vw}}
 @media(max-width:700px){.hero{height:220vh}.hero__stage{min-height:560px}.hero__story-card{left:24px;right:24px;max-width:none;top:44%}.hero__story-card h2{font-size:clamp(32px,10vw,48px)}.hero__story-kicker{font-size:8px}.hero__scroll{bottom:20px!important}}
+@media (min-width:701px) and (max-width:1000px){.hero__grid{background-image:url('assets/hero-grid-tablet.png')}}
+@media (max-width:700px){.hero__grid{background-image:url('assets/hero-grid-mobile.png')}}
 </style>
 <style>
 @media (min-width:701px) and (max-width:1000px){.hero__photo{background-image:linear-gradient(to bottom,rgba(4,10,17,.2) 0%,rgba(4,10,17,0) 37%,rgba(4,10,17,.05) 70%,rgba(4,10,17,.56) 100%),url('assets/hero-background-tablet.webp');background-position:center center}}
@@ -167,12 +174,22 @@
 <style>
 .hero__story-card:before{content:'';position:absolute;left:-18px;top:6px;width:3px;height:74px;background:var(--green);box-shadow:0 0 22px #6deb91aa}
 .hero__story-card:after{content:'01—03';position:absolute;right:-34vw;top:8px;color:#ffffff38;font:700 10px var(--font-head);letter-spacing:.18em}
+.hero__slogans{position:absolute;left:0;right:0;top:50%;z-index:4;display:flex;flex-direction:column;gap:1.5vw;transform:translateY(-50%) rotate(-3deg);pointer-events:none;opacity:.9}
+.hero__slogan{overflow:hidden;white-space:nowrap;color:#d8f5df;font:800 clamp(44px,8vw,150px)/.88 var(--font-head);letter-spacing:-.08em;text-shadow:0 10px 35px #06101c66}
+.hero__slogan-track{display:flex;width:max-content;align-items:center;gap:.2em;will-change:transform}
+.hero__slogan-track span{display:inline-block}
+.hero__slogan-track b{color:var(--green);font-size:.42em;line-height:1}
+.hero__slogan--forward .hero__slogan-track{animation:slogan-forward 24s linear infinite}
+.hero__slogan--reverse .hero__slogan-track{animation:slogan-reverse 28s linear infinite}
+@keyframes slogan-forward{from{transform:translate3d(-33.333%,0,0)}to{transform:translate3d(0,0,0)}}
+@keyframes slogan-reverse{from{transform:translate3d(0,0,0)}to{transform:translate3d(-33.333%,0,0)}}
 .hero__marquee{position:absolute;left:0;right:0;bottom:108px;z-index:3;overflow:hidden;opacity:.34;transform:rotate(-3deg);pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .hero__marquee-track{display:flex;width:max-content;align-items:center;color:#d8f5df;font:700 clamp(16px,2vw,25px) var(--font-head);letter-spacing:.08em;white-space:nowrap;animation:hero-marquee 22s linear infinite;will-change:transform}
 .hero__marquee-group{display:flex;align-items:center;gap:22px;padding-right:22px;flex:none}
 .hero__marquee-track i{color:var(--green);font-style:normal;font-size:.8em}
 @keyframes hero-marquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(-33.333333%,0,0)}}
 @media(max-width:700px){.hero__marquee{bottom:102px}.hero__marquee-group{gap:14px;padding-right:14px}.hero__marquee-track{font-size:14px}.hero__story-card:before{left:-12px}.hero__story-card:after{right:0;top:-24px}}
+@media(max-width:700px){.hero__slogans{gap:6vw}.hero__slogan{font-size:clamp(40px,12vw,70px)}}
 </style>
 <style>
 .hero__bottom{transition:opacity .35s ease,visibility .35s ease,transform .35s ease}
@@ -221,6 +238,7 @@
 <section aria-label="WebTechFarmers digital drafting board" class="hero" id="top">
 <div class="hero__stage">
 <div aria-hidden="true" class="hero__photo"></div>
+<div aria-hidden="true" class="hero__grid"></div>
 <svg aria-hidden="true" class="hero__trace" preserveaspectratio="xMidYMid slice" viewbox="0 0 1672 557">
 <defs><lineargradient id="trace-gradient" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#8af9ad" stop-opacity="0"></stop><stop offset=".5" stop-color="#9cf8ad" stop-opacity=".9"></stop><stop offset="1" stop-color="#8af9ad" stop-opacity="0"></stop></lineargradient></defs>
 <path class="trace trace--one" d="M695 538 L1206 433 L1225 454"></path>
@@ -238,7 +256,7 @@
 <article class="hero__story-card hero__story-card--two" data-story-step="1"><span class="hero__story-kicker">02 / SHAPE THE EXPERIENCE</span><h2>Every detail has a job.<br/><em>Every interaction should feel natural.</em></h2></article>
 <article class="hero__story-card hero__story-card--three" data-story-step="2"><span class="hero__story-kicker">03 / BUILD FOR WHAT'S NEXT</span><h2>Thoughtful systems<br/><em>that grow with your business.</em></h2></article>
 </div>
-<div aria-hidden="true" class="hero__marquee"><div class="hero__marquee-track"><div class="hero__marquee-group"><span>STRATEGY</span><i>+</i><span>DESIGN</span><i>+</i><span>DEVELOPMENT</span><i>+</i><span>SUPPORT</span><i>+</i></div><div class="hero__marquee-group"><span>STRATEGY</span><i>+</i><span>DESIGN</span><i>+</i><span>DEVELOPMENT</span><i>+</i><span>SUPPORT</span><i>+</i></div><div class="hero__marquee-group"><span>STRATEGY</span><i>+</i><span>DESIGN</span><i>+</i><span>DEVELOPMENT</span><i>+</i><span>SUPPORT</span><i>+</i></div></div></div>
+<div aria-hidden="true" class="hero__slogans"><div class="hero__slogan hero__slogan--forward"><div class="hero__slogan-track"><span>BUILT WITH PURPOSE</span><b>✦</b><span>BUILT WITH PURPOSE</span><b>✦</b><span>BUILT WITH PURPOSE</span><b>✦</b></div></div><div class="hero__slogan hero__slogan--reverse"><div class="hero__slogan-track"><span>BUILT TO LAST</span><b>✦</b><span>BUILT TO LAST</span><b>✦</b><span>BUILT TO LAST</span><b>✦</b></div></div></div>
 </div>
 </section>
 <section class="intro section-pad" id="intro">
@@ -387,10 +405,12 @@ function updateHeroStory(){
  const distance=Math.max(1,hero.offsetHeight-window.innerHeight);
  const progress=Math.min(1,Math.max(0,-hero.getBoundingClientRect().top/distance));
  const nextStep=String(progress<.34?0:progress<.68?1:2);
- if(hero.dataset.storyStep===nextStep)return;
+ const nextGridState=progress>.52?'active':'initial';
+ if(hero.dataset.storyStep===nextStep && hero.dataset.gridState===nextGridState)return;
  window.cancelAnimationFrame(heroStoryFrame);
  heroStoryFrame=window.requestAnimationFrame(()=>{
   hero.dataset.storyStep=nextStep;
+  hero.dataset.gridState=nextGridState;
   hero.querySelectorAll('.hero__story-card').forEach((card,index)=>card.classList.toggle('is-active',String(index)===nextStep));
  });
 }
