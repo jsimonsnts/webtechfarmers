@@ -182,6 +182,13 @@
 .hero__bottom{transition:opacity .35s ease,visibility .35s ease,transform .35s ease}
 .hero__bottom.is-hidden{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,12px)}
 </style>
+<style>
+/* Keep marquee letters crisp at the edges and give the loop a clean buffer. */
+.hero__marquee{mask-image:none!important;padding-inline:24px}
+.hero__marquee-track{padding-left:24px;animation-timing-function:linear;animation-duration:28s}
+.hero__marquee-group{min-width:max-content}
+@media(max-width:700px){.hero__marquee{padding-inline:14px}.hero__marquee-track{padding-left:14px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
