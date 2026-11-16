@@ -168,6 +168,15 @@
 .hero__scroll{visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 .hero__scroll.is-fixed{visibility:visible!important;opacity:1!important;pointer-events:auto!important}
 </style>
+<style>
+.hero__story-card:before{content:'';position:absolute;left:-18px;top:6px;width:3px;height:74px;background:var(--green);box-shadow:0 0 22px #6deb91aa}
+.hero__story-card:after{content:'01—03';position:absolute;right:-34vw;top:8px;color:#ffffff38;font:700 10px var(--font-head);letter-spacing:.18em}
+.hero__marquee{position:absolute;left:0;right:0;bottom:108px;z-index:3;overflow:hidden;opacity:.34;transform:rotate(-3deg);pointer-events:none;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.hero__marquee-track{display:flex;width:max-content;align-items:center;gap:22px;color:#d8f5df;font:700 clamp(16px,2vw,25px) var(--font-head);letter-spacing:.08em;white-space:nowrap;animation:hero-marquee 24s linear infinite}
+.hero__marquee-track i{color:var(--green);font-style:normal;font-size:.8em}
+@keyframes hero-marquee{from{transform:translateX(-18%)}to{transform:translateX(-58%)}}
+@media(max-width:700px){.hero__marquee{bottom:102px}.hero__marquee-track{gap:14px;font-size:14px}.hero__story-card:before{left:-12px}.hero__story-card:after{right:0;top:-24px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -213,6 +222,7 @@
 <article class="hero__story-card hero__story-card--two" data-story-step="1"><span class="hero__story-kicker">02 / SHAPE THE EXPERIENCE</span><h2>Every detail has a job.<br/><em>Every interaction should feel natural.</em></h2></article>
 <article class="hero__story-card hero__story-card--three" data-story-step="2"><span class="hero__story-kicker">03 / BUILD FOR WHAT'S NEXT</span><h2>Thoughtful systems<br/><em>that grow with your business.</em></h2></article>
 </div>
+<div aria-hidden="true" class="hero__marquee"><div class="hero__marquee-track"><span>STRATEGY</span><i>+</i><span>DESIGN</span><i>+</i><span>DEVELOPMENT</span><i>+</i><span>SUPPORT</span><i>+</i><span>STRATEGY</span><i>+</i><span>DESIGN</span><i>+</i><span>DEVELOPMENT</span><i>+</i><span>SUPPORT</span><i>+</i></div></div>
 </div>
 </section>
 <section class="intro section-pad" id="intro">
@@ -294,6 +304,7 @@
 <script>'use strict';
 const loader = document.querySelector('#loader');
 const stickyHeader = document.querySelector('#site-header');
+const firstSection = document.querySelector('.hero');
 const nav = document.querySelector('#primary-nav');
 const toggle = document.querySelector('.menu-toggle');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -302,7 +313,7 @@ function hideLoader(){if(loader)loader.classList.add('is-hidden')}
 // The loader is purely decorative; never delay the site behind it.
 if(document.readyState === 'complete'){window.setTimeout(hideLoader,1600)}else{window.addEventListener('load',()=>window.setTimeout(hideLoader,1600),{once:true});setTimeout(hideLoader,1600)}
 
-function updateHeader(){stickyHeader?.classList.toggle('is-sticky',window.scrollY > 36)}
+function updateHeader(){const firstSectionEnd=firstSection?Math.max(36,firstSection.offsetHeight-window.innerHeight-8):36;stickyHeader?.classList.toggle('is-sticky',window.scrollY>firstSectionEnd)}
 window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
 function closeNav(){nav?.classList.remove('is-open');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Open menu')}
 toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close menu':'Open menu')});
