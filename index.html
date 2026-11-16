@@ -289,6 +289,19 @@
 .site-header:not(.is-compact) .header__cta-only{pointer-events:none;transition-delay:0s,0s,0s}
 </style>
 <style>@media(min-width:701px){.chat-widget{bottom:50px}}</style>
+<style>
+/* Use the supplied arrow artwork consistently across action links and buttons. */
+span[aria-hidden="true"]:not(.chat-launcher__icon):not(.chat-avatar){display:inline-block;width:1.05em;height:1.05em;flex:0 0 1.05em;background:currentColor;-webkit-mask:url('assets/arrow-right.svg') center/contain no-repeat;mask:url('assets/arrow-right.svg') center/contain no-repeat;text-indent:-9999px;overflow:hidden;line-height:0;vertical-align:-.12em}
+.arrow-icon{display:inline-block;width:1.05em;height:1.05em;vertical-align:-.12em;color:currentColor;font-size:1em;line-height:0}
+.nav__cta:before{content:none!important;display:none!important}
+.nav__cta:before{content:'';background:currentColor;-webkit-mask:url('assets/arrow-right.svg') center/contain no-repeat;mask:url('assets/arrow-right.svg') center/contain no-repeat}
+.hero__scroll:after{content:'';display:grid!important;background:var(--green-bright);-webkit-mask:url('assets/arrow-right.svg') center/contain no-repeat;mask:url('assets/arrow-right.svg') center/contain no-repeat}
+.chat-form button{font-size:0}.chat-form button:before{content:'';display:block;width:1.1em;height:1.1em;margin:auto;background:currentColor;-webkit-mask:url('assets/arrow-right.svg') center/contain no-repeat;mask:url('assets/arrow-right.svg') center/contain no-repeat}
+.nav__cta:before{content:none!important;display:none!important}
+.nav__cta{transform:scale(1.04);transform-origin:right center}
+.nav__cta:hover{transform:scale(1.04) translateY(-1px)}
+@media (min-width:1001px){.nav{font-size:16px}.nav__cta{font-size:16px;padding:10px 15px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -543,5 +556,6 @@ function updateHeroStory(){
 }
 window.addEventListener('scroll',updateHeroStory,{passive:true});window.addEventListener('resize',updateHeroStory);updateHeroStory();
 heroScroll?.addEventListener('click',event=>{event.preventDefault();document.querySelector('#intro')?.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'','#intro')});
+const arrowSvg='<svg aria-hidden="true" class="arrow-icon" viewBox="0 0 266 242" focusable="false"><path d="M138 18 119 38 191 111H23v28h169l-73 73 19 19 107-106L138 18Z" fill="currentColor"/></svg>';document.querySelectorAll('body *:not(script):not(style)').forEach(element=>{if(element.children.length||!/[↗→↑↓]/.test(element.textContent))return;if(element.matches('span[aria-hidden="true"]')){const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('aria-hidden','true');icon.setAttribute('class','arrow-icon');icon.setAttribute('viewBox','0 0 266 242');icon.setAttribute('focusable','false');const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d','M138 18 119 38 191 111H23v28h169l-73 73 19 19 107-106L138 18Z');path.setAttribute('fill','currentColor');icon.appendChild(path);element.replaceWith(icon)}else element.innerHTML=element.textContent.replace(/[↗→↑↓]/g,arrowSvg)});
 </script></body>
 </html>
