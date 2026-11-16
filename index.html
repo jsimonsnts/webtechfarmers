@@ -124,6 +124,10 @@
   .hero__photo{background-size:cover;background-position:66% center;transform:scale(1)}
 }
 </style>
+<style>
+.hero__scroll,.hero__scroll:before,.hero__scroll:after{pointer-events:auto}
+.hero__scroll:before,.hero__scroll:after{pointer-events:none}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -296,6 +300,8 @@ function demoReply(){window.setTimeout(()=>addChatMessage('Great direction. Shar
 chatForm?.addEventListener('submit',event=>{event.preventDefault();const message=chatInput.value.trim();if(!message)return;addChatMessage(message);chatInput.value='';demoReply()});document.querySelectorAll('[data-chat-message]').forEach(button=>button.addEventListener('click',()=>{addChatMessage(button.dataset.chatMessage);demoReply()}));
 const launcherIcon=document.querySelector('.chat-launcher__icon'),brandLogo=document.querySelector('.chat-brand-logo');
 if(launcherIcon&&brandLogo){launcherIcon.style.backgroundImage=`url("${brandLogo.src}")`}
+const heroScroll=document.querySelector('.hero__scroll');
+heroScroll?.addEventListener('click',event=>{event.preventDefault();document.querySelector('#intro')?.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});history.replaceState(null,'','#intro')});
 </script></body>
 </html>
 
