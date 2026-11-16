@@ -53,6 +53,9 @@
 .nav__cta:hover:before{background:#091811;color:var(--green);transform:rotate(8deg)}
 @media(max-width:700px){.hero{height:100vh;height:100svh;max-height:none;min-height:600px}.nav__cta{border-radius:7px}}
 </style>
+<style>
+.chat-widget{position:fixed;right:28px;bottom:26px;z-index:70;font-family:var(--font-body)}.chat-launcher{display:inline-flex;align-items:center;gap:10px;border:1px solid #ffffff33;border-radius:8px;padding:12px 15px;background:rgba(11,20,32,.92);color:#fff;box-shadow:0 12px 30px #06101c55;font:700 12px var(--font-head);letter-spacing:.04em;backdrop-filter:blur(12px);transition:transform .2s,background .2s}.chat-launcher:hover{background:#173022;transform:translateY(-2px)}.chat-launcher__pulse{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #22c55e22,0 0 14px var(--green);animation:chat-pulse 2s infinite}.chat-launcher__icon{font-size:20px;line-height:12px;color:var(--green-bright);transform:rotate(-22deg)}@keyframes chat-pulse{50%{box-shadow:0 0 0 7px #22c55e08,0 0 18px var(--green)}}.chat-panel{position:absolute;right:0;bottom:58px;width:360px;overflow:hidden;border:1px solid #ffffff18;border-radius:14px;background:#f7f9f7;color:var(--navy);box-shadow:0 24px 70px #02080f66;animation:chat-in .22s ease-out}.chat-panel[hidden]{display:none}@keyframes chat-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}.chat-panel__header{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 20px 16px;background:var(--deep);color:#fff}.chat-panel__eyebrow{display:block;margin-bottom:7px;color:var(--green-bright);font:700 8px var(--font-head);letter-spacing:.16em}.chat-panel__header strong{font:700 18px var(--font-head);letter-spacing:-.03em}.chat-panel__close{border:0;background:transparent;color:#ffffffaa;font-size:26px;line-height:18px}.chat-panel__close:hover{color:#fff}.chat-panel__status{padding:10px 20px;border-bottom:1px solid var(--line);color:var(--muted);font-size:10px}.chat-panel__status span{display:inline-block;width:6px;height:6px;margin-right:6px;border-radius:50%;background:var(--green)}.chat-panel__status b{float:right;color:var(--orange);font-size:8px;letter-spacing:.14em}.chat-messages{display:flex;flex-direction:column;gap:13px;min-height:155px;max-height:220px;overflow:auto;padding:18px 20px 8px}.chat-message{display:flex;gap:9px;align-items:flex-start}.chat-message--user{justify-content:flex-end}.chat-message--user>div{order:-1}.chat-message--user p{background:#dff6e5}.chat-avatar{display:grid;place-items:center;flex:0 0 25px;width:25px;height:25px;border-radius:7px;background:var(--green);color:#071a0d;font:800 12px var(--font-head)}.chat-message small{display:block;margin-bottom:3px;color:var(--muted);font-size:9px}.chat-message p{max-width:245px;margin:0;padding:9px 11px;border-radius:3px 10px 10px 10px;background:#e8eee9;font-size:12px;line-height:1.4}.chat-message--user p{border-radius:10px 3px 10px 10px}.chat-quick-replies{display:flex;gap:6px;overflow:auto;padding:7px 20px 12px}.chat-quick-replies button{white-space:nowrap;border:1px solid #c9d8ce;border-radius:20px;padding:7px 10px;background:#fff;color:var(--navy);font-size:10px}.chat-quick-replies button:hover{border-color:var(--green);color:#147936}.chat-form{display:flex;gap:7px;padding:12px 20px;border-top:1px solid var(--line)}.chat-form input{width:100%;min-width:0;border:1px solid #cbd7cf;border-radius:7px;padding:10px 11px;outline:none;background:#fff;color:var(--navy);font-size:12px}.chat-form input:focus{border-color:var(--green)}.chat-form button{width:38px;border:0;border-radius:7px;background:var(--green);color:#08200e;font-size:19px}.chat-demo-note{margin:0;padding:0 20px 14px;color:#8a9890;font-size:9px}@media(max-width:700px){.chat-widget{right:17px;bottom:18px}.chat-panel{right:-2px;width:min(360px,calc(100vw - 34px));bottom:58px}.chat-launcher{padding:11px 13px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
@@ -157,6 +160,17 @@
 </div>
 </section>
 </main>
+<div class="chat-widget" id="chat-widget">
+<button class="chat-launcher" id="chat-launcher" type="button" aria-expanded="false" aria-controls="chat-panel"><span class="chat-launcher__pulse"></span><span class="chat-launcher__icon" aria-hidden="true">⌁</span><span>Live chat</span></button>
+<section class="chat-panel" id="chat-panel" aria-label="WebTechFarmers live chat" hidden>
+<div class="chat-panel__header"><div><span class="chat-panel__eyebrow">WEBTECHFARMERS / SUPPORT</span><strong>Let’s talk tech.</strong></div><button class="chat-panel__close" id="chat-close" type="button" aria-label="Close live chat">×</button></div>
+<div class="chat-panel__status"><span></span> Usually replies in a few minutes <b>DEMO</b></div>
+<div class="chat-messages" id="chat-messages"><div class="chat-message chat-message--agent"><span class="chat-avatar">W</span><div><small>WebTechFarmers</small><p>Hi there. What are you looking to grow?</p></div></div></div>
+<div class="chat-quick-replies"><button type="button" data-chat-message="I need a new website">New website</button><button type="button" data-chat-message="I need a redesign">Redesign</button><button type="button" data-chat-message="I have a Shopify project">Shopify</button></div>
+<form class="chat-form" id="chat-form"><input id="chat-input" type="text" maxlength="300" placeholder="Write a message..." autocomplete="off" aria-label="Chat message"/><button type="submit" aria-label="Send message">↗</button></form>
+<p class="chat-demo-note">Static preview · Connect your chat provider before launch.</p>
+</section>
+</div>
 <footer class="footer"><div class="container footer__main"><a aria-label="WebTechFarmers — back to top" class="brand brand--footer" href="#top"><img alt="WebTechFarmers WTF logo" height="30" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDIxIDI2MiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJXZWJUZWNoRmFybWVycyBXVEYgbGV0dGVybWFyayI+CiAgPHBhdGggZmlsbD0iI0Y4RkFGQyIgZD0iTTAgMiBMNzMgMjYxIEwxNTYgMjYxIEwyNTMgMTE1IEwzMDAgMjYxIEwzODIgMjYxIEw0OTkgODcgTDQwOCA4NiBMMzU1IDE2MSBMMzA5IDIgTDI1MyAxIEwyNDEgNSBMMjMyIDEyIEwxMzMgMTYxIEw4OCAyIFoiLz4KICA8cGF0aCBmaWxsPSIjRjhGQUZDIiBkPSJNNDU0IDI2MSBMNTQ2IDI2MSBMNjYxIDYxIEw5NzIgNjEgTDEwMjAgMCBMNDYyIDEgTDQyNCA2MSBMNTY3IDYxIEw1NjggNjQgWiIvPgogIDxwYXRoIGZpbGw9IiMxNkU2NDAiIGQ9Ik01ODcgMjYxIEw2NzkgMjYxIEw3NDAgMTUxIEw5MDYgMTUxIEw5NTMgODcgTDY4NiA4NiBaIi8+Cjwvc3ZnPgo=" width="102"/><span class="brand__type">WebTech<span>Farmers</span></span></a><p>Websites, built to grow.</p><a class="footer__top" href="#top">BACK TO TOP ↑</a></div><div class="container footer__bottom"><span>© <span id="year">2026</span> WEBTECHFARMERS</span><span>DESIGNED WITH PURPOSE. BUILT WITH CARE.</span></div></footer>
 <script>'use strict';
 const loader = document.querySelector('#loader');
@@ -167,7 +181,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 function hideLoader(){if(loader)loader.classList.add('is-hidden')}
 // The loader is purely decorative; never delay the site behind it.
-if(document.readyState === 'complete'){hideLoader()}else{window.addEventListener('load',hideLoader,{once:true});setTimeout(hideLoader,700)}
+if(document.readyState === 'complete'){window.setTimeout(hideLoader,1600)}else{window.addEventListener('load',()=>window.setTimeout(hideLoader,1600),{once:true});setTimeout(hideLoader,1600)}
 
 function updateHeader(){stickyHeader?.classList.toggle('is-sticky',window.scrollY > 36)}
 window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
@@ -206,6 +220,12 @@ form?.addEventListener('submit',async(event)=>{
   feedback.textContent='Automatic copying is unavailable here. Select and copy the details from the fields above.';
  }
 });
+const chatLauncher=document.querySelector('#chat-launcher'),chatPanel=document.querySelector('#chat-panel'),chatClose=document.querySelector('#chat-close'),chatForm=document.querySelector('#chat-form'),chatInput=document.querySelector('#chat-input'),chatMessages=document.querySelector('#chat-messages');
+function setChat(open){chatPanel.hidden=!open;chatLauncher?.setAttribute('aria-expanded',String(open));if(open)chatInput?.focus()}
+chatLauncher?.addEventListener('click',()=>setChat(chatPanel.hidden));chatClose?.addEventListener('click',()=>setChat(false));
+function addChatMessage(message,type='user'){const item=document.createElement('div');item.className=`chat-message chat-message--${type}`;item.innerHTML=type==='agent'?`<span class="chat-avatar">W</span><div><small>WebTechFarmers</small><p>${message}</p></div>`:`<div><p>${message}</p></div>`;chatMessages.append(item);chatMessages.scrollTop=chatMessages.scrollHeight}
+function demoReply(){window.setTimeout(()=>addChatMessage('Great direction. Share a few details below and our team can shape the next step.','agent'),420)}
+chatForm?.addEventListener('submit',event=>{event.preventDefault();const message=chatInput.value.trim();if(!message)return;addChatMessage(message);chatInput.value='';demoReply()});document.querySelectorAll('[data-chat-message]').forEach(button=>button.addEventListener('click',()=>{addChatMessage(button.dataset.chatMessage);demoReply()}));
 </script></body>
 </html>
 
