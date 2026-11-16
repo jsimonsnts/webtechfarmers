@@ -301,6 +301,11 @@ span[aria-hidden="true"]:not(.chat-launcher__icon):not(.chat-avatar){display:inl
 .nav__cta{transform:scale(1.04);transform-origin:right center}
 .nav__cta:hover{transform:scale(1.04) translateY(-1px)}
 @media (min-width:1001px){.nav{font-size:16px}.nav__cta{font-size:16px;padding:10px 15px}}
+.hero__scroll:after{content:'↓'!important;display:grid!important;position:absolute;left:50%;right:auto;top:7px;width:auto;height:auto;border:0!important;border-radius:0!important;background:transparent!important;color:var(--green-bright);font:700 19px/1 var(--font-head);-webkit-mask:none!important;mask:none!important;animation:scroll-arrow-float 1.8s ease-in-out infinite!important}
+.hero__scroll .mouse{position:relative;display:flex;width:22px!important;height:34px!important;align-items:flex-start;justify-content:center;padding:5px 0 0!important;border:1.5px solid #f0fff7!important;border-radius:13px!important;background:transparent!important;overflow:hidden}
+.hero__scroll .mouse>span{display:block;width:3px!important;height:9px!important;border:0!important;border-radius:3px!important;background:var(--green-bright)!important;box-shadow:0 0 10px var(--green-bright);animation:scroll-wheel-green 1.35s cubic-bezier(.4,0,.2,1) infinite!important}
+@keyframes scroll-wheel-green{0%{transform:translateY(0);opacity:0}18%{opacity:1}78%{transform:translateY(16px);opacity:1}100%{transform:translateY(19px);opacity:0}}
+@keyframes scroll-arrow-float{0%,100%{transform:translateX(-50%) translateY(0);opacity:.55}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
 </style>
 </head>
 <body>
