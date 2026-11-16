@@ -189,6 +189,14 @@
 .hero__marquee-group{min-width:max-content}
 @media(max-width:700px){.hero__marquee{padding-inline:14px}.hero__marquee-track{padding-left:14px}}
 </style>
+<style>
+/* Draft-board framing for the sections below the hero. */
+.intro,.services,.process{position:relative;isolation:isolate;background-image:linear-gradient(#173b2710 1px,transparent 1px),linear-gradient(90deg,#173b2710 1px,transparent 1px);background-size:56px 56px}
+.intro:after,.services:after,.work:after,.process:after,.contact:after{content:'';position:absolute;inset:28px;border:1px solid #173b2720;pointer-events:none;z-index:-1}
+.work:after,.contact:after{border-color:#a5e0bd18}
+.intro>.container,.services>.container,.work>.container,.process>.container,.contact>.container{z-index:1}
+@media(max-width:700px){.intro:after,.services:after,.work:after,.process:after,.contact:after{inset:16px}.intro,.services,.process{background-size:38px 38px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
