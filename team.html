@@ -61,6 +61,17 @@ a{color:inherit;text-decoration:none}
 .team-hero__line{position:relative;left:auto;right:auto;bottom:auto;margin-top:72px}
 @media(max-width:700px){.team-hero__line{margin-top:52px}}
 </style>
+<style>
+/* Purposeful motion for the team story and profile grid. */
+@keyframes team-fade-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.team-hero .eyebrow{animation:team-fade-up .65s cubic-bezier(.2,.7,.2,1) both}
+.team-hero h1{animation:team-fade-up .8s .1s cubic-bezier(.2,.7,.2,1) both}
+.team-hero> .container:first-child p{animation:team-fade-up .7s .22s cubic-bezier(.2,.7,.2,1) both}
+.team-card{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1),border-color .25s ease}
+.team-card.is-visible{opacity:1;transform:translateY(0)}
+.team-card:nth-child(2){transition-delay:.08s}.team-card:nth-child(3){transition-delay:.16s}.team-card:nth-child(4){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.team-hero .eyebrow,.team-hero h1,.team-hero> .container:first-child p,.team-card{animation:none;transition:none;opacity:1;transform:none}}
+</style>
 </head>
 <body>
 <header class="team-header">
@@ -93,5 +104,12 @@ a{color:inherit;text-decoration:none}
 <section class="team-cta"><div class="container team-cta__inner"><h2>Have a meaningful problem to solve?</h2><a class="quote-button" href="index.html#contact">Get a Quote <span aria-hidden="true">↗</span></a></div></section>
 </main>
 <footer class="team-footer"><div class="container team-footer__inner"><span>BUILT WITH PURPOSE. DESIGNED WITH CARE.</span><a href="index.html">Back to WebTechFarmers ↑</a></div></footer>
+<script>
+const teamCards=document.querySelectorAll('.team-card');
+if('IntersectionObserver' in window){
+ const teamObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');teamObserver.unobserve(entry.target)}}),{threshold:.16});
+ teamCards.forEach(card=>teamObserver.observe(card));
+}else{teamCards.forEach(card=>card.classList.add('is-visible'))}
+</script>
 </body>
 </html>
