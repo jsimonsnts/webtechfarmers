@@ -72,6 +72,27 @@
 /* Final launcher treatment: the supplied WTF mark lives in chat-launcher__icon. */
 .chat-launcher__icon{display:block;width:82px;height:22px;background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDIxIDI2MiIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsPSJXZWJUZWNoRmFybWVycyBXVEYgbGV0dGVybWFyayI+CiAgPHBhdGggZmlsbD0iI0Y4RkFGQyIgZD0iTTAgMiBMNzMgMjYxIEwxNTYgMjYxIEwyNTMgMTE1IEwzMDAgMjYxIEwzODIgMjYxIEw0OTkgODcgTDQwOCA4NiBMMzU1IDE2MSBMMzA5IDIgTDI1MyAxIEwyNDEgNSBMMjMyIDEyIEwxMzMgMTYxIEw4OCAyIFoiLz4KICA8cGF0aCBmaWxsPSIjRjhGQUZDIiBkPSJNNDU0IDI2MSBMNTQ2IDI2MSBMNjYxIDYxIEw5NzIgNjEgTDEwMjAgMCBMNDYyIDEgTDQyNCA2MSBMNTY3IDYxIEw1NjggNjQgWiIvPgogIDxwYXRoIGZpbGx9PSIjMTZFNjQwIiBkPSJNNTA4NyAyNjEgTDY3OSAyNjEgTDc0MCAxNTEgTDkwNiAxNTEgTDk1MyA4NyBMODg2IDg2IFoiLz4KPC9zdmc+") center/contain no-repeat;transform:none;font-size:0;line-height:0}
 </style>
+<style>
+/* Final interaction polish for the launcher, quote CTA, and hero navigation. */
+.chat-launcher__icon{width:56px;height:15px;flex:0 0 56px;opacity:.92}
+.chat-launcher{gap:8px}
+.nav__cta{overflow:hidden;isolation:isolate;transform:translateZ(0)}
+.nav__cta:after{content:'';position:absolute;inset:0;width:48%;background:linear-gradient(105deg,transparent,#baffc54d,transparent);transform:translateX(-220%) skewX(-18deg);animation:cta-scan 3.2s ease-in-out infinite;pointer-events:none;z-index:-1}
+.nav__cta:before{z-index:1}
+@keyframes cta-scan{0%,52%{transform:translateX(-220%) skewX(-18deg)}78%,100%{transform:translateX(300%) skewX(-18deg)}}
+.hero__bottom{z-index:4}
+.hero__scroll{z-index:5;pointer-events:auto;cursor:pointer;transform:translateZ(0);animation:scroll-card-pulse 2.6s ease-in-out infinite}
+.hero__scroll:hover{transform:translateY(-4px) scale(1.03)}
+.hero__scroll:focus-visible{outline:2px solid var(--green-bright);outline-offset:6px}
+.hero__scroll .mouse{animation:scroll-mouse-bob 1.6s ease-in-out infinite}
+.hero__scroll .mouse>span{height:9px;animation:scroll-wheel 1.15s cubic-bezier(.4,0,.2,1) infinite}
+.hero__scroll:after{width:22px;height:22px;font-size:15px;animation:scroll-arrow 1.05s ease-in-out infinite}
+@keyframes scroll-card-pulse{0%,100%{box-shadow:0 8px 30px #03101c33,0 0 0 0 #75ed9a00}50%{box-shadow:0 8px 30px #03101c33,0 0 0 7px #75ed9a12}}
+@keyframes scroll-mouse-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes scroll-wheel{0%{transform:translateY(0);opacity:1}70%{transform:translateY(11px);opacity:0}100%{transform:translateY(0);opacity:0}}
+@media (max-width:1024px){.hero__photo{background-position:58% center;transform:scale(1)}}
+@media (max-width:700px){.hero__photo{background-position:61% center;background-size:cover;transform:scale(1)}.hero__bottom{bottom:22px}.hero__scroll{padding:11px 13px 10px}.chat-launcher__icon{width:50px;height:14px;flex-basis:50px}}
+</style>
 </head>
 <body>
 <div aria-hidden="true" class="loader" id="loader">
